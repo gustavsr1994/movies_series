@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_series/presentation/bloc/movies/movies_bloc.dart';
-import 'package:movies_series/presentation/bloc/movies_popular/movies_popular_bloc.dart';
-import 'package:movies_series/presentation/bloc/movies_upcoming/movies_upcoming_bloc.dart';
+import 'package:movies_series/presentation/bloc/movie/movies/movies_bloc.dart';
+import 'package:movies_series/presentation/bloc/movie/movies_popular/movies_popular_bloc.dart';
+import 'package:movies_series/presentation/bloc/movie/movies_upcoming/movies_upcoming_bloc.dart';
 import 'package:movies_series/presentation/shared/commons/result_state.dart';
-import 'package:movies_series/presentation/shared/commons/widgets/card_list_title.dart';
+import 'package:movies_series/presentation/shared/commons/widgets/card/card_list_title.dart';
+import 'package:movies_series/presentation/shared/style/colors_pallete.dart';
+import 'package:movies_series/presentation/shared/style/text_style_custom.dart';
+import 'package:movies_series/presentation/view/movies/all/all_movies_screen.dart';
 
 class MoviesScreen extends StatefulWidget {
   @override
@@ -15,9 +18,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<MoviesBloc>().add(GetListMoviesNowPlaying());
-    context.read<MoviesUpcomingBloc>().add(GetListMoviesUpcoming());
-    context.read<MoviesPopularBloc>().add(GetListMoviesPopular());
+    context.read<MoviesBloc>().add(GetListMoviesNowPlaying(page: 1));
+    context.read<MoviesUpcomingBloc>().add(GetListMoviesUpcoming(page: 1));
+    context.read<MoviesPopularBloc>().add(GetListMoviesPopular(page: 1));
   }
 
   @override
@@ -28,106 +31,182 @@ class _MoviesScreenState extends State<MoviesScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              color: Colors.black,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Movies Now Playing'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: Text('Movies Now Playing',
+                            style: textLargerColor(
+                                boldCondition: true, color: accentColor)),
+                      ),
+                      InkWell(
+                        onTap: () => _navigateToAllMovie(),
+                        child: Text(
+                          'View All',
+                          style: textMediumColor(
+                              boldCondition: true, color: accentColor),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 6),
                   BlocBuilder<MoviesBloc, MoviesState>(
                     builder: (context, state) {
                       if (state.state == ResultStateApi.Loading) {
                         return Center(child: CircularProgressIndicator());
                       } else if (state.state == ResultStateApi.HasData) {
-                        return Column(
-                          children: [
-                            for (var index = 0;
-                                index < state.listMovies.length;
-                                index++)
-                              CardListTitle(
-                                  title: state.listMovies[index].title,
-                                  adult: state.listMovies[index].adult,
-                                  releaseDate:
-                                      state.listMovies[index].releaseDate,
-                                  popularity:
-                                      state.listMovies[index].popularity,
-                                  content: state.listMovies[index].content,
-                                  onPressed: null)
-                          ],
+                        return SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              for (var index = 0;
+                                  index < state.listMovies.length;
+                                  index++)
+                                CardListTitle(
+                                    title: state.listMovies[index].title,
+                                    adult: state.listMovies[index].adult,
+                                    imagePoster:
+                                        state.listMovies[index].imagePoster,
+                                    releaseDate:
+                                        state.listMovies[index].releaseDate,
+                                    popularity:
+                                        state.listMovies[index].popularity,
+                                    content: state.listMovies[index].content,
+                                    onPressed: null)
+                            ],
+                          ),
                         );
                       } else {
                         return Center(child: Text('Error'));
                       }
-                      return Container();
                     },
                   ),
                 ],
               )),
           Container(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              color: Colors.black,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Movies Upcoming'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: Text('Movies Upcoming',
+                            style: textLargerColor(
+                                boldCondition: true, color: accentColor)),
+                      ),
+                      InkWell(
+                        onTap: () => _navigateToAllMovie(),
+                        child: Text(
+                          'View All',
+                          style: textMediumColor(
+                              boldCondition: true, color: accentColor),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 6),
                   BlocBuilder<MoviesUpcomingBloc, MoviesUpcomingState>(
                     builder: (context, state) {
                       if (state.state == ResultStateApi.Loading) {
                         return Center(child: CircularProgressIndicator());
                       } else if (state.state == ResultStateApi.HasData) {
-                        return Column(
-                          children: [
-                            for (var index = 0;
-                                index < state.listMovies.length;
-                                index++)
-                              CardListTitle(
-                                  title: state.listMovies[index].title,
-                                  adult: state.listMovies[index].adult,
-                                  releaseDate:
-                                      state.listMovies[index].releaseDate,
-                                  popularity:
-                                      state.listMovies[index].popularity,
-                                  content: state.listMovies[index].content,
-                                  onPressed: null)
-                          ],
+                        return SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              for (var index = 0;
+                                  index < state.listMovies.length;
+                                  index++)
+                                CardListTitle(
+                                    title: state.listMovies[index].title,
+                                    adult: state.listMovies[index].adult,
+                                    imagePoster:
+                                        state.listMovies[index].imagePoster,
+                                    releaseDate:
+                                        state.listMovies[index].releaseDate,
+                                    popularity:
+                                        state.listMovies[index].popularity,
+                                    content: state.listMovies[index].content,
+                                    onPressed: null)
+                            ],
+                          ),
                         );
                       } else {
                         return Center(child: Text('Error'));
                       }
-                      return Container();
                     },
                   ),
                 ],
               )),
           Container(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              color: Colors.black,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Movies Popular'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: Text('Movies Popular',
+                            style: textLargerColor(
+                                boldCondition: true, color: accentColor)),
+                      ),
+                      InkWell(
+                        onTap: () => _navigateToAllMovie(),
+                        child: Text(
+                          'View All',
+                          style: textMediumColor(
+                              boldCondition: true, color: accentColor),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 6),
                   BlocBuilder<MoviesPopularBloc, MoviesPopularState>(
                     builder: (context, state) {
                       if (state.state == ResultStateApi.Loading) {
                         return Center(child: CircularProgressIndicator());
                       } else if (state.state == ResultStateApi.HasData) {
-                        return Column(
-                          children: [
-                            for (var index = 0;
-                                index < state.listMovies.length;
-                                index++)
-                              CardListTitle(
-                                  title: state.listMovies[index].title,
-                                  adult: state.listMovies[index].adult,
-                                  releaseDate:
-                                      state.listMovies[index].releaseDate,
-                                  popularity:
-                                      state.listMovies[index].popularity,
-                                  content: state.listMovies[index].content,
-                                  onPressed: null)
-                          ],
+                        return SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              for (var index = 0;
+                                  index < state.listMovies.length;
+                                  index++)
+                                CardListTitle(
+                                    title: state.listMovies[index].title,
+                                    adult: state.listMovies[index].adult,
+                                    imagePoster:
+                                        state.listMovies[index].imagePoster,
+                                    releaseDate:
+                                        state.listMovies[index].releaseDate,
+                                    popularity:
+                                        state.listMovies[index].popularity,
+                                    content: state.listMovies[index].content,
+                                    onPressed: null)
+                            ],
+                          ),
                         );
                       } else {
                         return Center(child: Text('Error'));
                       }
-                      return Container();
                     },
                   ),
                 ],
@@ -135,5 +214,10 @@ class _MoviesScreenState extends State<MoviesScreen> {
         ],
       )),
     );
+  }
+
+  void _navigateToAllMovie() {
+    Navigator.pushNamed(context, AllMoviesScreen.routeName,
+        arguments: 'All Movies');
   }
 }

@@ -2,11 +2,11 @@ import 'package:movies_series/data/datasource/datasource.dart';
 import 'package:movies_series/domain/entities/movie/movie_entity.dart';
 
 abstract class MovieRepository {
-  Future<List<MovieEntity>> listMoviesNowPlaying();
-  Future<List<MovieEntity>> listMoviesPopular();
-  Future<List<MovieEntity>> listMoviesUpcoming();
+  Future<List<MovieEntity>> listMoviesNowPlaying(int page);
+  Future<List<MovieEntity>> listMoviesPopular(int page);
+  Future<List<MovieEntity>> listMoviesUpcoming(int page);
   Future<MovieDetailEntity> detailMovies(int idMovie);
-  Future<List<MovieReviewEntity>> listReviewMovies(int idMovie);
+  Future<List<MovieReviewEntity>> listReviewMovies(int idMovie, int page);
 }
 
 class MovieRepositoryImpl extends MovieRepository {
@@ -40,12 +40,14 @@ class MovieRepositoryImpl extends MovieRepository {
   }
 
   @override
-  Future<List<MovieEntity>> listMoviesNowPlaying() async {
+  Future<List<MovieEntity>> listMoviesNowPlaying(int page) async {
     var result = <MovieEntity>[];
-    var data = await DataApi().listMoviesNow();
+    var data = await DataApi().listMoviesNow(page);
     data.results.forEach((element) {
       result.add(MovieEntity(
           id: element.id,
+          imagePoster:
+              'https://www.themoviedb.org/t/p/w600_and_h900_bestv2${element.posterPath}',
           title: element.title,
           adult: element.adult,
           content: element.overview,
@@ -56,12 +58,14 @@ class MovieRepositoryImpl extends MovieRepository {
   }
 
   @override
-  Future<List<MovieEntity>> listMoviesPopular() async {
+  Future<List<MovieEntity>> listMoviesPopular(int page) async {
     var result = <MovieEntity>[];
-    var data = await DataApi().listMoviesPopular();
+    var data = await DataApi().listMoviesPopular(page);
     data.results.forEach((element) {
       result.add(MovieEntity(
           id: element.id,
+          imagePoster:
+              'https://www.themoviedb.org/t/p/w600_and_h900_bestv2${element.posterPath}',
           title: element.title,
           adult: element.adult,
           content: element.overview,
@@ -72,13 +76,15 @@ class MovieRepositoryImpl extends MovieRepository {
   }
 
   @override
-  Future<List<MovieEntity>> listMoviesUpcoming() async {
+  Future<List<MovieEntity>> listMoviesUpcoming(int page) async {
     var result = <MovieEntity>[];
-    var data = await DataApi().listMoviesUpcoming();
+    var data = await DataApi().listMoviesUpcoming(page);
     data.results.forEach((element) {
       result.add(MovieEntity(
           id: element.id,
           title: element.title,
+          imagePoster:
+              'https://www.themoviedb.org/t/p/w600_and_h900_bestv2${element.posterPath}',
           adult: element.adult,
           content: element.overview,
           popularity: element.popularity.toString(),
@@ -88,9 +94,9 @@ class MovieRepositoryImpl extends MovieRepository {
   }
 
   @override
-  Future<List<MovieReviewEntity>> listReviewMovies(int idMovie) async {
+  Future<List<MovieReviewEntity>> listReviewMovies(int idMovie, int page) async {
     var result = <MovieReviewEntity>[];
-    var data = await DataApi().listReviewMovie(idMovie);
+    var data = await DataApi().listReviewMovie(idMovie, page);
     data.results.forEach((element) {
       result.add(MovieReviewEntity(
           author: element.author,

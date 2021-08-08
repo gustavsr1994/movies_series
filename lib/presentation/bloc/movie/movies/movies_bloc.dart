@@ -18,21 +18,22 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     MoviesEvent event,
   ) async* {
     if (event is GetListMoviesNowPlaying) {
-      yield* _getListMoviesNowPlaying();
+      yield* _getListMoviesNowPlaying(event.page);
     }
     
     if (event is DetailMovies) {
       yield* _getDetailMovies(event.idMovie);
     }
+
     if (event is GetListReviewMovies) {
-      yield* _getListReviewMovies(event.idMovie);
+      yield* _getListReviewMovies(event.idMovie, event.page);
     }
   }
 
-  Stream<MoviesState> _getListMoviesNowPlaying() async* {
+  Stream<MoviesState> _getListMoviesNowPlaying(int page) async* {
     try {
       yield state.copyWith(state: ResultStateApi.Loading);
-      var response = await MovieUsecaseImpl().listMoviesNowPlaying();
+      var response = await MovieUsecaseImpl().listMoviesNowPlaying(page);
       if (response.isEmpty) {
         yield state.copyWith(state: ResultStateApi.NoData);
       } else {
@@ -57,10 +58,10 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     }
   }
 
-  Stream<MoviesState> _getListReviewMovies(int idMovie) async* {
+  Stream<MoviesState> _getListReviewMovies(int idMovie, int page) async* {
     try {
       yield state.copyWith(state: ResultStateApi.Loading);
-      var response = await MovieUsecaseImpl().listReviewMovies(idMovie);
+      var response = await MovieUsecaseImpl().listReviewMovies(idMovie, page);
       if (response.isEmpty) {
         yield state.copyWith(state: ResultStateApi.NoData);
       } else {

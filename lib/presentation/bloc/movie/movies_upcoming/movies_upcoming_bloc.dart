@@ -19,14 +19,14 @@ class MoviesUpcomingBloc
     MoviesUpcomingEvent event,
   ) async* {
     if (event is GetListMoviesUpcoming) {
-      yield* _getListMoviesUpcoming();
+      yield* _getListMoviesUpcoming(event.page);
     }
   }
 
-  Stream<MoviesUpcomingState> _getListMoviesUpcoming() async* {
+  Stream<MoviesUpcomingState> _getListMoviesUpcoming(int page) async* {
     try {
       yield state.copyWith(state: ResultStateApi.Loading);
-      var response = await MovieUsecaseImpl().listMoviesUpcoming();
+      var response = await MovieUsecaseImpl().listMoviesUpcoming(page);
       if (response.isEmpty) {
         yield state.copyWith(state: ResultStateApi.NoData);
       } else {

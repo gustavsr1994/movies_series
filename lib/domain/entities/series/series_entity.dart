@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 class SeriesEntity extends Equatable {
   final int id;
   final String title;
+  final String imagePoster;
   final String firstOnAirDate;
   final String popularity;
   final String content;
@@ -10,12 +11,13 @@ class SeriesEntity extends Equatable {
   SeriesEntity(
       {this.id,
       this.title,
+      this.imagePoster,
       this.firstOnAirDate,
       this.popularity,
       this.content});
 
   @override
-  List<Object> get props => [id, title, firstOnAirDate, content, popularity];
+  List<Object> get props => [id, title, imagePoster, firstOnAirDate, content, popularity];
 }
 
 class SeriesDetailEntity extends Equatable {

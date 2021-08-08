@@ -7,7 +7,10 @@ abstract class MoviesEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetListMoviesNowPlaying extends MoviesEvent {}
+class GetListMoviesNowPlaying extends MoviesEvent {
+  final int page;
+  GetListMoviesNowPlaying({this.page});
+}
 
 class DetailMovies extends MoviesEvent {
   final int idMovie;
@@ -16,5 +19,6 @@ class DetailMovies extends MoviesEvent {
 
 class GetListReviewMovies extends MoviesEvent {
   final int idMovie;
-  GetListReviewMovies({this.idMovie});
+  final int page;
+  GetListReviewMovies({this.idMovie, this.page});
 }

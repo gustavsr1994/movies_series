@@ -18,14 +18,14 @@ class MoviesPopularBloc extends Bloc<MoviesPopularEvent, MoviesPopularState> {
     MoviesPopularEvent event,
   ) async* {
     if (event is GetListMoviesPopular) {
-      yield* _getListMoviesPopular();
+      yield* _getListMoviesPopular(event.page);
     }
   }
 
-  Stream<MoviesPopularState> _getListMoviesPopular() async* {
+  Stream<MoviesPopularState> _getListMoviesPopular(int page) async* {
     try {
       yield state.copyWith(state: ResultStateApi.Loading);
-      var response = await MovieUsecaseImpl().listMoviesPopular();
+      var response = await MovieUsecaseImpl().listMoviesPopular(page);
       if (response.isEmpty) {
         yield state.copyWith(state: ResultStateApi.NoData);
       } else {
