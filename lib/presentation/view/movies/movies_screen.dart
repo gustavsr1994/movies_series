@@ -8,6 +8,7 @@ import 'package:movies_series/presentation/shared/commons/widgets/card/card_list
 import 'package:movies_series/presentation/shared/style/colors_pallete.dart';
 import 'package:movies_series/presentation/shared/style/text_style_custom.dart';
 import 'package:movies_series/presentation/view/movies/all/all_movies_screen.dart';
+import 'package:movies_series/presentation/view/movies/detail/detail_movie_screen.dart';
 
 class MoviesScreen extends StatefulWidget {
   @override
@@ -46,7 +47,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                 boldCondition: true, color: accentColor)),
                       ),
                       InkWell(
-                        onTap: () => _navigateToAllMovie(),
+                        onTap: () => _navigateToAllMovie(1),
                         child: Text(
                           'View All',
                           style: textMediumColor(
@@ -59,7 +60,10 @@ class _MoviesScreenState extends State<MoviesScreen> {
                   BlocBuilder<MoviesBloc, MoviesState>(
                     builder: (context, state) {
                       if (state.state == ResultStateApi.Loading) {
-                        return Center(child: CircularProgressIndicator());
+                        return Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 260,
+                            child: Center(child: CircularProgressIndicator()));
                       } else if (state.state == ResultStateApi.HasData) {
                         return SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -78,7 +82,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                     popularity:
                                         state.listMovies[index].popularity,
                                     content: state.listMovies[index].content,
-                                    onPressed: null)
+                                    onPressed: () => _navigateToDetail(
+                                        state.listMovies[index].id))
                             ],
                           ),
                         );
@@ -105,7 +110,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                 boldCondition: true, color: accentColor)),
                       ),
                       InkWell(
-                        onTap: () => _navigateToAllMovie(),
+                        onTap: () => _navigateToAllMovie(2),
                         child: Text(
                           'View All',
                           style: textMediumColor(
@@ -118,7 +123,10 @@ class _MoviesScreenState extends State<MoviesScreen> {
                   BlocBuilder<MoviesUpcomingBloc, MoviesUpcomingState>(
                     builder: (context, state) {
                       if (state.state == ResultStateApi.Loading) {
-                        return Center(child: CircularProgressIndicator());
+                        return Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 260,
+                            child: Center(child: CircularProgressIndicator()));
                       } else if (state.state == ResultStateApi.HasData) {
                         return SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -139,7 +147,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                     popularity:
                                         state.listMovies[index].popularity,
                                     content: state.listMovies[index].content,
-                                    onPressed: null)
+                                    onPressed: () => _navigateToDetail(
+                                        state.listMovies[index].id))
                             ],
                           ),
                         );
@@ -166,7 +175,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                 boldCondition: true, color: accentColor)),
                       ),
                       InkWell(
-                        onTap: () => _navigateToAllMovie(),
+                        onTap: () => _navigateToAllMovie(3),
                         child: Text(
                           'View All',
                           style: textMediumColor(
@@ -179,7 +188,10 @@ class _MoviesScreenState extends State<MoviesScreen> {
                   BlocBuilder<MoviesPopularBloc, MoviesPopularState>(
                     builder: (context, state) {
                       if (state.state == ResultStateApi.Loading) {
-                        return Center(child: CircularProgressIndicator());
+                        return Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 260,
+                            child: Center(child: CircularProgressIndicator()));
                       } else if (state.state == ResultStateApi.HasData) {
                         return SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -200,7 +212,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                     popularity:
                                         state.listMovies[index].popularity,
                                     content: state.listMovies[index].content,
-                                    onPressed: null)
+                                    onPressed: () => _navigateToDetail(
+                                        state.listMovies[index].id))
                             ],
                           ),
                         );
@@ -216,8 +229,12 @@ class _MoviesScreenState extends State<MoviesScreen> {
     );
   }
 
-  void _navigateToAllMovie() {
-    Navigator.pushNamed(context, AllMoviesScreen.routeName,
-        arguments: 'All Movies');
+  void _navigateToAllMovie(int index) {
+    Navigator.pushNamed(context, AllMoviesScreen.routeName, arguments: index);
+  }
+
+  void _navigateToDetail(int id) {
+    print('$id');
+    Navigator.pushNamed(context, DetailMovieScreen.routeName, arguments: id);
   }
 }

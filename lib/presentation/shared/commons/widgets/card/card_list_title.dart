@@ -40,33 +40,30 @@ class CardListTitle extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
           margin: EdgeInsets.only(right: 20),
+          padding: EdgeInsets.all(8.0),
           width: 150,
           height: 260,
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: CachedNetworkImageProvider(
-                          imagePoster,
-                        ),
-                        fit: BoxFit.fill,
-                      )),
-                  height: 170,
-                ),
-                SizedBox(height: 18),
-                Text(
-                  title,
-                  style:
-                      textMediumColor(boldCondition: true, color: accentColor),
-                )
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: CachedNetworkImageProvider(
+                        imagePoster,
+                      ),
+                      fit: BoxFit.fill,
+                    )),
+                height: 170,
+              ),
+              SizedBox(height: 18),
+              Text(
+                title,
+                style: textMediumColor(boldCondition: true, color: accentColor),
+              )
+            ],
           ),
         ));
   }

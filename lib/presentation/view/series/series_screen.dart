@@ -53,7 +53,10 @@ class _SeriesScreenState extends State<SeriesScreen> {
                   BlocBuilder<SeriesBloc, SeriesState>(
                     builder: (context, state) {
                       if (state.state == ResultStateApi.Loading) {
-                        return Center(child: CircularProgressIndicator());
+                        return Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 260,
+                            child: Center(child: CircularProgressIndicator()));
                       } else if (state.state == ResultStateApi.HasData) {
                         return SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -111,7 +114,10 @@ class _SeriesScreenState extends State<SeriesScreen> {
                   BlocBuilder<SeriesPopularBloc, SeriesPopularState>(
                     builder: (context, state) {
                       if (state.state == ResultStateApi.Loading) {
-                        return Center(child: CircularProgressIndicator());
+                        return Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 260,
+                            child: Center(child: CircularProgressIndicator()));
                       } else if (state.state == ResultStateApi.HasData) {
                         return SingleChildScrollView(
                           scrollDirection: Axis.horizontal,

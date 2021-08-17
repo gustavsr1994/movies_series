@@ -4,6 +4,7 @@ import 'package:movies_series/presentation/bloc/movie/movies/movies_bloc.dart';
 import 'package:movies_series/presentation/bloc/movie/movies_popular/movies_popular_bloc.dart';
 import 'package:movies_series/presentation/bloc/movie/movies_upcoming/movies_upcoming_bloc.dart';
 import 'package:movies_series/presentation/bloc/seriesTv/series/series_bloc.dart';
+import 'package:movies_series/presentation/bloc/seriesTv/series_popular/series_popular_bloc.dart';
 import 'package:movies_series/presentation/shared/style/colors_pallete.dart';
 import 'package:movies_series/presentation/view/movies/all/all_movies_screen.dart';
 import 'package:movies_series/presentation/view/movies/detail/detail_movie_screen.dart';
@@ -33,10 +34,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => SeriesBloc(),
         ),
+        BlocProvider(
+          create: (context) => SeriesPopularBloc(),
+        )
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
-        
         routes: {
           AllMoviesScreen.routeName: (context) => AllMoviesScreen(),
           DetailMovieScreen.routeName: (context) => DetailMovieScreen(),
