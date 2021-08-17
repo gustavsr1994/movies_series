@@ -91,7 +91,7 @@ class AuthorDetails {
     name = json['name'];
     username = json['username'];
     avatarPath = json['avatar_path'];
-    rating = json['rating'];
+    // rating = json['rating'];
   }
 
   Map<String, dynamic> toJson() {

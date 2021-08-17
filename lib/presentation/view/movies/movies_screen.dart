@@ -234,7 +234,6 @@ class _MoviesScreenState extends State<MoviesScreen> {
   }
 
   void _navigateToDetail(int id) {
-    print('$id');
     Navigator.pushNamed(context, DetailMovieScreen.routeName, arguments: id);
   }
 }

@@ -7,6 +7,7 @@ import 'package:movies_series/presentation/shared/commons/widgets/card/card_all_
 import 'package:movies_series/presentation/shared/style/colors_pallete.dart';
 import 'package:movies_series/presentation/shared/style/text_style_custom.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_series/presentation/view/movies/detail/detail_movie_screen.dart';
 
 class AllMoviesScreen extends StatefulWidget {
   @override
@@ -31,7 +32,6 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
         break;
       default:
     }
-    // context.read<MoviesBloc>().add(GetListMoviesNowPlaying(page: 1));
   }
 
   @override
@@ -79,7 +79,8 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                 crossAxisCount: 2,
                 children: List.generate(state.listMovies.length, (index) {
                   return CardAllItem(
-                      id: state.listMovies[index].id,
+                      onPress: () =>
+                          _navigateToDetail(state.listMovies[index].id),
                       title: state.listMovies[index].title,
                       imagePoster: state.listMovies[index].imagePoster);
                 }),
@@ -101,7 +102,8 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                 crossAxisCount: 2,
                 children: List.generate(state.listMovies.length, (index) {
                   return CardAllItem(
-                      id: state.listMovies[index].id,
+                      onPress: () =>
+                          _navigateToDetail(state.listMovies[index].id),
                       title: state.listMovies[index].title,
                       imagePoster: state.listMovies[index].imagePoster);
                 }),
@@ -123,7 +125,8 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                 crossAxisCount: 2,
                 children: List.generate(state.listMovies.length, (index) {
                   return CardAllItem(
-                      id: state.listMovies[index].id,
+                      onPress: () =>
+                          _navigateToDetail(state.listMovies[index].id),
                       title: state.listMovies[index].title,
                       imagePoster: state.listMovies[index].imagePoster);
                 }),
@@ -138,5 +141,9 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
         return Container();
         break;
     }
+  }
+
+  void _navigateToDetail(int id) {
+    Navigator.pushNamed(context, DetailMovieScreen.routeName, arguments: id);
   }
 }

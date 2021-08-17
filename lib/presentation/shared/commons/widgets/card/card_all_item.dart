@@ -2,19 +2,20 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_series/presentation/shared/style/colors_pallete.dart';
 import 'package:movies_series/presentation/shared/style/text_style_custom.dart';
-import 'package:movies_series/presentation/view/movies/detail/detail_movie_screen.dart';
 
 class CardAllItem extends StatelessWidget {
-  final int id;
   final String title;
   final String imagePoster;
+  final Function onPress;
   CardAllItem(
-      {@required this.id, @required this.title, @required this.imagePoster});
+      {@required this.title,
+      @required this.imagePoster,
+      @required this.onPress});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => _navigateToDetail(context, id),
+      onTap: () => onPress,
       child: Container(
         margin: EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -51,9 +52,5 @@ class CardAllItem extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _navigateToDetail(BuildContext context, int id) {
-    Navigator.pushNamed(context, DetailMovieScreen.routeName, arguments: id);
   }
 }

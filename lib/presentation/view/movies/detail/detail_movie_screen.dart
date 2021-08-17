@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_series/presentation/bloc/movie/movies/movies_bloc.dart';
@@ -14,16 +13,13 @@ class DetailMovieScreen extends StatefulWidget {
 
 class _DetailMovieScreenState extends State<DetailMovieScreen> {
   var index = 0;
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     final indexData = ModalRoute.of(context).settings.arguments as int;
     index = indexData;
     context.read<MoviesBloc>().add(DetailMovies(idMovie: index));
+    context.read<MoviesBloc>().add(GetListReviewMovies(idMovie: index, page: 1));
 
     return Scaffold(
       backgroundColor: mainColor,
@@ -49,19 +45,6 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Container(
-                  //     padding:
-                  //         EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  //     height: MediaQuery.of(context).size.height / 14,
-                  //     width: MediaQuery.of(context).size.width,
-                  //     decoration: BoxDecoration(
-                  //       borderRadius: BorderRadius.all(Radius.circular(10)),
-                  //       color: accentColor,
-                  //       image: DecorationImage(image: CachedNetworkImageProvider(
-                  //       state.detailMovies.,
-                  //     ),)
-                  //     )),
-
                   Container(
                     margin: EdgeInsets.all(8),
                     child: Text(
@@ -145,7 +128,6 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
                       ],
                     ),
                   ),
-
                   SizedBox(
                     height: 16,
                   ),
@@ -184,7 +166,52 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
                       ],
                     ),
                   ),
-
+                  SizedBox(
+                    height: 16,
+                  ),
+                  BlocBuilder<MoviesBloc, MoviesState>(
+                    builder: (context, state) {
+                      if (state.state == ResultStateApi.HasData) {
+                        return SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              for (var index = 0;
+                                  index < state.listReview.length;
+                                  index++)
+                                Container(
+                                  padding: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        state.listReview[index].author,
+                                        style: textLargerColor(
+                                            boldCondition: true,
+                                            color: accentColor),
+                                      ),
+                                      Text(
+                                        state.listReview[index].content,
+                                        style: textMediumColor(
+                                            boldCondition: false,
+                                            color: accentColor),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                            ],
+                          ),
+                        );
+                      } else {
+                        return Container();
+                      }
+                    },
+                  ),
                   SizedBox(
                     height: 16,
                   ),

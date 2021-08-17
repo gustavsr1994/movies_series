@@ -6,6 +6,8 @@ import 'package:movies_series/presentation/shared/commons/result_state.dart';
 import 'package:movies_series/presentation/shared/commons/widgets/card/card_list_title.dart';
 import 'package:movies_series/presentation/shared/style/colors_pallete.dart';
 import 'package:movies_series/presentation/shared/style/text_style_custom.dart';
+import 'package:movies_series/presentation/view/series/all/all_series_screen.dart';
+import 'package:movies_series/presentation/view/series/detail/detail_series_screen.dart';
 
 class SeriesScreen extends StatefulWidget {
   @override
@@ -17,6 +19,7 @@ class _SeriesScreenState extends State<SeriesScreen> {
   void initState() {
     super.initState();
     context.read<SeriesBloc>().add(GetListSeriesOnAir(page: 1));
+    context.read<SeriesPopularBloc>().add(GetListSeriesPopular(page: 1));
   }
 
   @override
@@ -41,6 +44,7 @@ class _SeriesScreenState extends State<SeriesScreen> {
                                 boldCondition: true, color: accentColor)),
                       ),
                       InkWell(
+                        onTap: () => _navigateToAllSeries(1),
                         child: Text(
                           'View All',
                           style: textMediumColor(
@@ -75,7 +79,8 @@ class _SeriesScreenState extends State<SeriesScreen> {
                                     popularity:
                                         state.listSeries[index].popularity,
                                     content: state.listSeries[index].content,
-                                    onPressed: null)
+                                    onPressed: () => _navigateToDetail(
+                                        state.listSeries[index].id))
                             ],
                           ),
                         );
@@ -102,6 +107,7 @@ class _SeriesScreenState extends State<SeriesScreen> {
                                 boldCondition: true, color: accentColor)),
                       ),
                       InkWell(
+                        onTap: () => _navigateToAllSeries(2),
                         child: Text(
                           'View All',
                           style: textMediumColor(
@@ -136,7 +142,8 @@ class _SeriesScreenState extends State<SeriesScreen> {
                                     popularity:
                                         state.listSeries[index].popularity,
                                     content: state.listSeries[index].content,
-                                    onPressed: null)
+                                    onPressed: () => _navigateToDetail(
+                                        state.listSeries[index].id))
                             ],
                           ),
                         );
@@ -150,5 +157,13 @@ class _SeriesScreenState extends State<SeriesScreen> {
         ],
       )),
     );
+  }
+
+  void _navigateToAllSeries(int index) {
+    Navigator.pushNamed(context, AllSeriesScreen.routeName, arguments: index);
+  }
+
+  void _navigateToDetail(int id) {
+    Navigator.pushNamed(context, DetailSeriesScreen.routeName, arguments: id);
   }
 }

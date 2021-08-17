@@ -8,6 +8,7 @@ import 'package:movies_series/presentation/bloc/seriesTv/series_popular/series_p
 import 'package:movies_series/presentation/shared/style/colors_pallete.dart';
 import 'package:movies_series/presentation/view/movies/all/all_movies_screen.dart';
 import 'package:movies_series/presentation/view/movies/detail/detail_movie_screen.dart';
+import 'package:movies_series/presentation/view/series/all/all_series_screen.dart';
 import 'package:movies_series/presentation/view/series/detail/detail_series_screen.dart';
 
 import 'presentation/view/main/main_screen.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         routes: {
           AllMoviesScreen.routeName: (context) => AllMoviesScreen(),
           DetailMovieScreen.routeName: (context) => DetailMovieScreen(),
+          AllSeriesScreen.routeName: (context) => AllSeriesScreen(),
           DetailSeriesScreen.routeName: (context) => DetailSeriesScreen(),
         },
         theme: ThemeData(
