@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies_series/presentation/shared/style/colors_pallete.dart';
 import 'package:movies_series/presentation/shared/style/text_style_custom.dart';
+import 'package:movies_series/presentation/view/about/about_screen.dart';
 import 'package:movies_series/presentation/view/movies/movies_screen.dart';
-import 'package:movies_series/presentation/view/series/series_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -19,12 +19,12 @@ class _MainScreenState extends State<MainScreen> {
       label: 'Movies',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.tv, color: accentColor),
-      label: 'TV Series',
+      icon: Icon(Icons.portrait, color: accentColor),
+      label: 'About Me',
     )
   ];
 
-  List<Widget> _listWidget() => [MoviesScreen(), SeriesScreen()];
+  List<Widget> _listWidget() => [MoviesScreen(), AboutScreen()];
 
   @override
   Widget build(BuildContext context) {

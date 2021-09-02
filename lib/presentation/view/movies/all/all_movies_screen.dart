@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:movies_series/presentation/bloc/movie/movies/movies_bloc.dart';
 import 'package:movies_series/presentation/bloc/movie/movies_popular/movies_popular_bloc.dart';
 import 'package:movies_series/presentation/bloc/movie/movies_upcoming/movies_upcoming_bloc.dart';
@@ -12,15 +13,15 @@ import 'package:movies_series/presentation/view/movies/detail/detail_movie_scree
 class AllMoviesScreen extends StatefulWidget {
   @override
   _AllMoviesScreenState createState() => _AllMoviesScreenState();
-  static const routeName = '/allMoviesScreen';
+  final int indexPage;
+  AllMoviesScreen({this.indexPage});
 }
 
 class _AllMoviesScreenState extends State<AllMoviesScreen> {
-  int indexPage = 0;
   @override
   void initState() {
     super.initState();
-    switch (indexPage) {
+    switch (widget.indexPage) {
       case 1:
         context.read<MoviesBloc>().add(GetListMoviesNowPlaying(page: 1));
         break;
@@ -36,17 +37,16 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final index = ModalRoute.of(context).settings.arguments as int;
-    setState(() {
-      indexPage = index;
-    });
     return Scaffold(
         backgroundColor: mainColor,
         appBar: AppBar(
-            title: Text(titlePage(index),
+            leading: BackButton(
+              color: accentColor,
+            ),
+            title: Text(titlePage(widget.indexPage),
                 style:
                     textLargerColor(boldCondition: true, color: accentColor))),
-        body: bodyListMovies(index));
+        body: bodyListMovies(widget.indexPage));
   }
 
   String titlePage(int index) {
@@ -144,6 +144,6 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
   }
 
   void _navigateToDetail(int id) {
-    Navigator.pushNamed(context, DetailMovieScreen.routeName, arguments: id);
+    Get.to(DetailMovieScreen(index: id));
   }
 }

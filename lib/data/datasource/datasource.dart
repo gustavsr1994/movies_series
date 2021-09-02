@@ -3,9 +3,6 @@ import 'package:movies_series/data/models/movie/movie_popular_response.dart';
 import 'package:movies_series/data/models/movie/movie_response.dart';
 import 'package:dio/dio.dart';
 import 'package:movies_series/data/models/movie/review/movie_review_response.dart';
-import 'package:movies_series/data/models/series/detail/series_detail_response.dart';
-import 'package:movies_series/data/models/series/review/series_review_response.dart';
-import 'package:movies_series/data/models/series/series_response.dart';
 
 abstract class DataSource {
   Future<MoviesResponse> listMoviesNow(int page);
@@ -15,11 +12,6 @@ abstract class DataSource {
   Future<MoviesDetailResponse> listDetailMovie(int idMovie);
   Future<MoviesReviewResponse> listReviewMovie(int idMovie, int page);
 
-  Future<SeriesResponse> listSeriesOnAir(int page);
-  Future<SeriesResponse> listSeriesPopular(int page);
-
-  Future<SeriesDetailResponse> listDetailSeries(int idSeries);
-  Future<SeriesReviewResponse> listReviewSeries(int idSeries, int page);
 }
 
 class DataApi extends DataSource {
@@ -49,22 +41,6 @@ class DataApi extends DataSource {
   }
 
   @override
-  Future<SeriesResponse> listSeriesOnAir(int page) async {
-    Dio dio = new Dio();
-    Response response = await dio.get(
-        'https://api.themoviedb.org/3/tv/on_the_air?api_key=7be963c975b0ae811ceda3b0755e622a&language=en-US&page=$page');
-    return SeriesResponse.fromJson(response.data as Map<String, dynamic>);
-  }
-
-  @override
-  Future<SeriesResponse> listSeriesPopular(int page) async {
-    Dio dio = new Dio();
-    Response response = await dio.get(
-        'https://api.themoviedb.org/3/tv/popular?api_key=7be963c975b0ae811ceda3b0755e622a&language=en-US&page=$page');
-    return SeriesResponse.fromJson(response.data as Map<String, dynamic>);
-  }
-
-  @override
   Future<MoviesDetailResponse> listDetailMovie(int idMovie) async {
     Dio dio = new Dio();
     Response response = await dio.get(
@@ -80,19 +56,4 @@ class DataApi extends DataSource {
     return MoviesReviewResponse.fromJson(response.data as Map<String, dynamic>);
   }
 
-  @override
-  Future<SeriesDetailResponse> listDetailSeries(int idSeries) async {
-    Dio dio = new Dio();
-    Response response = await dio.get(
-        'https://api.themoviedb.org/3/tv/$idSeries?api_key=7be963c975b0ae811ceda3b0755e622a&language=en-US');
-    return SeriesDetailResponse.fromJson(response.data as Map<String, dynamic>);
-  }
-
-  @override
-  Future<SeriesReviewResponse> listReviewSeries(int idSeries, int page) async {
-    Dio dio = new Dio();
-    Response response = await dio.get(
-        'https://api.themoviedb.org/3/tv/$idSeries/reviews?api_key=7be963c975b0ae811ceda3b0755e622a&language=en-US&page=1');
-    return SeriesReviewResponse.fromJson(response.data as Map<String, dynamic>);
-  }
 }

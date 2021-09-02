@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:movies_series/presentation/bloc/movie/movies/movies_bloc.dart';
 import 'package:movies_series/presentation/bloc/movie/movies_popular/movies_popular_bloc.dart';
 import 'package:movies_series/presentation/bloc/movie/movies_upcoming/movies_upcoming_bloc.dart';
@@ -230,10 +231,12 @@ class _MoviesScreenState extends State<MoviesScreen> {
   }
 
   void _navigateToAllMovie(int index) {
-    Navigator.pushNamed(context, AllMoviesScreen.routeName, arguments: index);
+    Get.to(AllMoviesScreen(indexPage: index,));
+    // Navigator.pushNamed(context, AllMoviesScreen.routeName, arguments: index);
   }
 
   void _navigateToDetail(int id) {
-    Navigator.pushNamed(context, DetailMovieScreen.routeName, arguments: id);
+    Get.to(DetailMovieScreen(index: id));
+    // Navigator.pushNamed(context, DetailMovieScreen.routeName, arguments: id);
   }
 }

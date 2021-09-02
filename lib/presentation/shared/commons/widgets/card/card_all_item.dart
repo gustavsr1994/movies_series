@@ -15,7 +15,7 @@ class CardAllItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onPress,
+      onTap: () => onPress(),
       child: Container(
         margin: EdgeInsets.all(8),
         decoration: BoxDecoration(
