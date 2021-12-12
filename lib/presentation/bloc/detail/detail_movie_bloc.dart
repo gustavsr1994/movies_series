@@ -17,13 +17,12 @@ class DetailMovieBloc extends Bloc<DetailMovieEvent, DetailMovieState> {
   Stream<DetailMovieState> mapEventToState(
     DetailMovieEvent event,
   ) async* {
-    
     if (event is DetailMovies) {
       yield* _getDetailMovies(event.idMovie);
     }
   }
 
-   Stream<DetailMovieState> _getDetailMovies(int idMovie) async* {
+  Stream<DetailMovieState> _getDetailMovies(int idMovie) async* {
     try {
       yield state.copyWith(state: ResultStateApi.Loading);
       var response = await MovieUsecaseImpl().detailMovies(idMovie);
@@ -34,20 +33,22 @@ class DetailMovieBloc extends Bloc<DetailMovieEvent, DetailMovieState> {
         // yield state.copyWith(state: ResultStateApi.HasData, detailMovies: response);
       }
     } on DioError catch (e) {
+      print("Message $e");
       yield state.copyWith(state: ResultStateApi.Error);
     }
   }
 
-  Stream<DetailMovieState> _getListReviewMovies(int idMovie, int page, MovieDetailEntity detailMovie) async* {
+  Stream<DetailMovieState> _getListReviewMovies(
+      int idMovie, int page, MovieDetailEntity detailMovie) async* {
     try {
       yield state.copyWith(state: ResultStateApi.Loading);
       var response = await MovieUsecaseImpl().listReviewMovies(idMovie, page);
-      if (response.isEmpty) {
-        yield state.copyWith(state: ResultStateApi.NoData);
-      } else {
-        yield state.copyWith(state: ResultStateApi.HasData, listReview: response, detailMovies: detailMovie);
-      }
+      yield state.copyWith(
+          state: ResultStateApi.HasData,
+          listReview: response,
+          detailMovies: detailMovie);
     } on DioError catch (e) {
+      print("Message $e");
       yield state.copyWith(state: ResultStateApi.Error);
     }
   }

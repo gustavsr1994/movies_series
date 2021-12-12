@@ -29,9 +29,11 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
       if (response.isEmpty) {
         yield state.copyWith(state: ResultStateApi.NoData);
       } else {
-        yield state.copyWith(state: ResultStateApi.HasData, listMovies: response, index: 1);
+        yield state.copyWith(
+            state: ResultStateApi.HasData, listMovies: response, index: 1);
       }
     } on DioError catch (e) {
+      print("Message $e");
       yield state.copyWith(state: ResultStateApi.Error);
     }
   }

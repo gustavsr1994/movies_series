@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_series/presentation/shared/style/colors_pallete.dart';
 import 'package:movies_series/presentation/shared/style/text_style_custom.dart';
@@ -35,52 +34,38 @@ class _AboutScreenState extends State<AboutScreen> {
               child: Card(
                 color: mainColor,
                 margin: EdgeInsets.all(16),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                      child: CircleAvatar(
-                          backgroundColor: accentColor,
-                          foregroundColor: mainColor,
-                          minRadius: 30,
-                          maxRadius: 50,
-                          backgroundImage: NetworkImage(
-                            'https://scontent.fcgk6-2.fna.fbcdn.net/v/t1.6435-9/90113200_3046765945336505_3894333214780555264_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeEFwVeZWJNwrrBUqlQCeALy4N2M3m-dg-3g3Yzeb52D7c6MLUImX-THkE-esym1dtOHDZYK76uBn-qWBTRFsHdp&_nc_ohc=9a7vDkI8lREAX99JFU5&_nc_ht=scontent.fcgk6-2.fna&oh=8a3b192fb11e69110720d11245086fbb&oe=615122A8',
-                          )),
+                    Text(
+                      'Gustav Sri Raharjo',
+                      style: textLargerColor(
+                          boldCondition: true, color: accentColor),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Gustav Sri Raharjo',
-                            style: textLargerColor(
-                                boldCondition: true, color: accentColor),
-                          ),
-                          SizedBox(
-                            height: 32,
-                          ),
-                          Text(
-                            '08569xxxxxx',
-                            style: textMediumColor(
-                                boldCondition: false, color: accentColor),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            'Indonesia',
-                            style: textMediumColor(
-                                boldCondition: false, color: accentColor),
-                          )
-                        ],
-                      ),
+                    SizedBox(
+                      height: 32,
                     ),
+                    Text(
+                      'Male',
+                      style: textMediumColor(
+                          boldCondition: false, color: accentColor),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      '08569xxxxxx',
+                      style: textMediumColor(
+                          boldCondition: false, color: accentColor),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      'Indonesia',
+                      style: textMediumColor(
+                          boldCondition: false, color: accentColor),
+                    )
                   ],
                 ),
               ),
@@ -140,13 +125,14 @@ Widget bodyMyProfile(BuildContext context) {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Instagram',
                 style: textMediumColor(boldCondition: true, color: accentColor),
               ),
               Icon(
-                Icons.arrow_right_sharp,
+                Icons.arrow_forward_ios_rounded,
                 color: accentColor,
               )
             ],
@@ -154,8 +140,7 @@ Widget bodyMyProfile(BuildContext context) {
         ),
       ),
       InkWell(
-        onTap: () =>
-            navigateToSocialMedia('https://github.com/gustavsr1994'),
+        onTap: () => navigateToSocialMedia('https://github.com/gustavsr1994'),
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: 50,
@@ -168,13 +153,14 @@ Widget bodyMyProfile(BuildContext context) {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Github',
                 style: textMediumColor(boldCondition: true, color: accentColor),
               ),
               Icon(
-                Icons.arrow_right_sharp,
+                Icons.arrow_forward_ios_rounded,
                 color: accentColor,
               )
             ],
@@ -196,13 +182,14 @@ Widget bodyMyProfile(BuildContext context) {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Facebook',
                 style: textMediumColor(boldCondition: true, color: accentColor),
               ),
               Icon(
-                Icons.arrow_right_sharp,
+                Icons.arrow_forward_ios_rounded,
                 color: accentColor,
               )
             ],

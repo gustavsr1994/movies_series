@@ -16,7 +16,7 @@ class MoviesResponse {
     dates = json['dates'] != null ? new Dates.fromJson(json['dates']) : null;
     page = json['page'];
     if (json['results'] != null) {
-      results = new List<Results>();
+      results = <Results>[];
       json['results'].forEach((v) {
         results.add(new Results.fromJson(v));
       });

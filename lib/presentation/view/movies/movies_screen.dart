@@ -84,7 +84,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                         state.listMovies[index].popularity,
                                     content: state.listMovies[index].content,
                                     onPressed: () => _navigateToDetail(
-                                        state.listMovies[index].id))
+                                        state.listMovies[index].id,
+                                        state.listMovies[index].imagePoster))
                             ],
                           ),
                         );
@@ -149,7 +150,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                         state.listMovies[index].popularity,
                                     content: state.listMovies[index].content,
                                     onPressed: () => _navigateToDetail(
-                                        state.listMovies[index].id))
+                                        state.listMovies[index].id,
+                                        state.listMovies[index].imagePoster))
                             ],
                           ),
                         );
@@ -214,7 +216,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                         state.listMovies[index].popularity,
                                     content: state.listMovies[index].content,
                                     onPressed: () => _navigateToDetail(
-                                        state.listMovies[index].id))
+                                        state.listMovies[index].id,
+                                        state.listMovies[index].imagePoster))
                             ],
                           ),
                         );
@@ -231,12 +234,15 @@ class _MoviesScreenState extends State<MoviesScreen> {
   }
 
   void _navigateToAllMovie(int index) {
-    Get.to(AllMoviesScreen(indexPage: index,));
-    // Navigator.pushNamed(context, AllMoviesScreen.routeName, arguments: index);
+    Get.to(AllMoviesScreen(
+      indexPage: index,
+    ));
   }
 
-  void _navigateToDetail(int id) {
-    Get.to(DetailMovieScreen(index: id));
-    // Navigator.pushNamed(context, DetailMovieScreen.routeName, arguments: id);
+  void _navigateToDetail(int id, String urlImage) {
+    Get.to(DetailMovieScreen(
+      index: id,
+      image: urlImage,
+    ));
   }
 }

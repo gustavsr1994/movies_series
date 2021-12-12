@@ -33,6 +33,7 @@ class MoviesPopularBloc extends Bloc<MoviesPopularEvent, MoviesPopularState> {
             state: ResultStateApi.HasData, listMovies: response);
       }
     } on DioError catch (e) {
+      print("Message $e");
       yield state.copyWith(state: ResultStateApi.Error);
     }
   }

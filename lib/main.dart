@@ -7,8 +7,6 @@ import 'package:movies_series/presentation/bloc/movie/movies_popular/movies_popu
 import 'package:movies_series/presentation/bloc/movie/movies_upcoming/movies_upcoming_bloc.dart';
 import 'package:movies_series/presentation/shared/style/colors_pallete.dart';
 import 'package:movies_series/presentation/shared/utils/list_pages.dart';
-import 'package:movies_series/presentation/view/movies/all/all_movies_screen.dart';
-import 'package:movies_series/presentation/view/movies/detail/detail_movie_screen.dart';
 import 'presentation/view/main/main_screen.dart';
 
 void main() {
@@ -30,17 +28,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => MoviesPopularBloc(),
         ),
-       BlocProvider(
-         create: (context) => DetailMovieBloc(),
-         child: Container(),
-       )
+        BlocProvider(
+          create: (context) => DetailMovieBloc(),
+          child: Container(),
+        )
       ],
       child: GetMaterialApp(
         title: 'Flutter Demo',
-        // routes: {
-        //   AllMoviesScreen.routeName: (context) => AllMoviesScreen(),
-        //   DetailMovieScreen.routeName: (context) => DetailMovieScreen(),
-        // },
         getPages: listPages,
         initialRoute: '/',
         theme: ThemeData(

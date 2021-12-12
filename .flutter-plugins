@@ -1,11 +1,13 @@
 # This is a generated file; do not edit or check into version control.
-path_provider=D:\\Programmer\\Developer\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider-1.6.28\\
-path_provider_linux=D:\\Programmer\\Developer\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_linux-0.0.1+2\\
-path_provider_macos=D:\\Programmer\\Developer\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_macos-0.0.4+8\\
-path_provider_windows=D:\\Programmer\\Developer\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_windows-0.0.4+3\\
-sqflite=D:\\Programmer\\Developer\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\sqflite-1.3.2+4\\
-url_launcher=D:\\Programmer\\Developer\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher-5.7.10\\
-url_launcher_linux=D:\\Programmer\\Developer\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_linux-0.0.1+4\\
-url_launcher_macos=D:\\Programmer\\Developer\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_macos-0.0.1+9\\
-url_launcher_web=D:\\Programmer\\Developer\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_web-0.1.5+3\\
-url_launcher_windows=D:\\Programmer\\Developer\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_windows-0.0.1+3\\
+path_provider=/Users/gustavkstylehub/Documents/developer/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.8/
+path_provider_android=/Users/gustavkstylehub/Documents/developer/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.9/
+path_provider_ios=/Users/gustavkstylehub/Documents/developer/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_ios-2.0.7/
+path_provider_linux=/Users/gustavkstylehub/Documents/developer/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.1.4/
+path_provider_macos=/Users/gustavkstylehub/Documents/developer/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-2.0.3/
+path_provider_windows=/Users/gustavkstylehub/Documents/developer/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.0.4/
+sqflite=/Users/gustavkstylehub/Documents/developer/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-2.0.1/
+url_launcher=/Users/gustavkstylehub/Documents/developer/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.7.10/
+url_launcher_linux=/Users/gustavkstylehub/Documents/developer/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-0.0.1+4/
+url_launcher_macos=/Users/gustavkstylehub/Documents/developer/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-0.0.1+9/
+url_launcher_web=/Users/gustavkstylehub/Documents/developer/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-0.1.5+3/
+url_launcher_windows=/Users/gustavkstylehub/Documents/developer/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_windows-0.0.1+3/

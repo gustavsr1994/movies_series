@@ -10,7 +10,7 @@ class MoviesPopularResponse {
   MoviesPopularResponse.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     if (json['results'] != null) {
-      results = new List<Results>();
+      results = <Results>[];
       json['results'].forEach((v) {
         results.add(new Results.fromJson(v));
       });

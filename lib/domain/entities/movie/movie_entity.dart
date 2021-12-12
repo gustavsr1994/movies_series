@@ -33,6 +33,7 @@ class MovieDetailEntity extends Equatable {
   final String content;
   final String status;
   final List<MovieReviewEntity> listReview;
+  final double rating;
 
   MovieDetailEntity(
       {this.id,
@@ -43,7 +44,8 @@ class MovieDetailEntity extends Equatable {
       this.listProductionCountries,
       this.content,
       this.status,
-      this.listReview});
+      this.listReview,
+      this.rating});
 
   @override
   List<Object> get props => [
@@ -55,7 +57,8 @@ class MovieDetailEntity extends Equatable {
         listProductionCountries,
         content,
         status,
-        listReview
+        listReview,
+        rating
       ];
 }
 
@@ -65,8 +68,7 @@ class MovieReviewEntity extends Equatable {
   final String content;
   final String url;
 
-  MovieReviewEntity(
-      {this.author, this.rating, this.content, this.url});
+  MovieReviewEntity({this.author, this.rating, this.content, this.url});
 
   @override
   List<Object> get props => [author, content, rating, url];

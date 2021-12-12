@@ -79,8 +79,9 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                 crossAxisCount: 2,
                 children: List.generate(state.listMovies.length, (index) {
                   return CardAllItem(
-                      onPress: () =>
-                          _navigateToDetail(state.listMovies[index].id),
+                      onPress: () => _navigateToDetail(
+                          state.listMovies[index].id,
+                          state.listMovies[index].imagePoster),
                       title: state.listMovies[index].title,
                       imagePoster: state.listMovies[index].imagePoster);
                 }),
@@ -102,8 +103,9 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                 crossAxisCount: 2,
                 children: List.generate(state.listMovies.length, (index) {
                   return CardAllItem(
-                      onPress: () =>
-                          _navigateToDetail(state.listMovies[index].id),
+                      onPress: () => _navigateToDetail(
+                          state.listMovies[index].id,
+                          state.listMovies[index].imagePoster),
                       title: state.listMovies[index].title,
                       imagePoster: state.listMovies[index].imagePoster);
                 }),
@@ -125,8 +127,9 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                 crossAxisCount: 2,
                 children: List.generate(state.listMovies.length, (index) {
                   return CardAllItem(
-                      onPress: () =>
-                          _navigateToDetail(state.listMovies[index].id),
+                      onPress: () => _navigateToDetail(
+                          state.listMovies[index].id,
+                          state.listMovies[index].imagePoster),
                       title: state.listMovies[index].title,
                       imagePoster: state.listMovies[index].imagePoster);
                 }),
@@ -143,7 +146,10 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
     }
   }
 
-  void _navigateToDetail(int id) {
-    Get.to(DetailMovieScreen(index: id));
+  void _navigateToDetail(int id, String urlImage) {
+    Get.to(DetailMovieScreen(
+      index: id,
+      image: urlImage,
+    ));
   }
 }

@@ -62,6 +62,7 @@ class CardListTitle extends StatelessWidget {
               Text(
                 title,
                 style: textMediumColor(boldCondition: true, color: accentColor),
+                overflow: TextOverflow.ellipsis,
               )
             ],
           ),

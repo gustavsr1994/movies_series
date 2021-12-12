@@ -36,7 +36,8 @@ class MovieRepositoryImpl extends MovieRepository {
         title: data.originalTitle,
         listProductionCompanies: listCompanies,
         listProductionCountries: listCountries,
-        listGenre: listGenre);
+        listGenre: listGenre,
+        rating: data.voteAverage);
   }
 
   @override
@@ -94,7 +95,8 @@ class MovieRepositoryImpl extends MovieRepository {
   }
 
   @override
-  Future<List<MovieReviewEntity>> listReviewMovies(int idMovie, int page) async {
+  Future<List<MovieReviewEntity>> listReviewMovies(
+      int idMovie, int page) async {
     var result = <MovieReviewEntity>[];
     var data = await DataApi().listReviewMovie(idMovie, page);
     data.results.forEach((element) {

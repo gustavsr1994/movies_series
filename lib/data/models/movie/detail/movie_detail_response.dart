@@ -60,7 +60,7 @@ class MoviesDetailResponse {
         : null;
     budget = json['budget'];
     if (json['genres'] != null) {
-      genres = new List<Genres>();
+      genres = <Genres>[];
       json['genres'].forEach((v) {
         genres.add(new Genres.fromJson(v));
       });
@@ -74,13 +74,13 @@ class MoviesDetailResponse {
     popularity = json['popularity'];
     posterPath = json['poster_path'];
     if (json['production_companies'] != null) {
-      productionCompanies = new List<ProductionCompanies>();
+      productionCompanies = <ProductionCompanies>[];
       json['production_companies'].forEach((v) {
         productionCompanies.add(new ProductionCompanies.fromJson(v));
       });
     }
     if (json['production_countries'] != null) {
-      productionCountries = new List<ProductionCountries>();
+      productionCountries = <ProductionCountries>[];
       json['production_countries'].forEach((v) {
         productionCountries.add(new ProductionCountries.fromJson(v));
       });
@@ -89,7 +89,7 @@ class MoviesDetailResponse {
     revenue = json['revenue'];
     runtime = json['runtime'];
     if (json['spoken_languages'] != null) {
-      spokenLanguages = new List<SpokenLanguages>();
+      spokenLanguages = <SpokenLanguages>[];
       json['spoken_languages'].forEach((v) {
         spokenLanguages.add(new SpokenLanguages.fromJson(v));
       });
