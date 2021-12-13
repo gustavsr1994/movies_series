@@ -51,7 +51,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                         onTap: () => _navigateToAllMovie(1),
                         child: Text(
                           'View All',
-                          style: textMediumColor(
+                          style: textSmallColor(
                               boldCondition: true, color: accentColor),
                         ),
                       )
@@ -115,7 +115,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                         onTap: () => _navigateToAllMovie(2),
                         child: Text(
                           'View All',
-                          style: textMediumColor(
+                          style: textSmallColor(
                               boldCondition: true, color: accentColor),
                         ),
                       )
@@ -181,7 +181,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                         onTap: () => _navigateToAllMovie(3),
                         child: Text(
                           'View All',
-                          style: textMediumColor(
+                          style: textSmallColor(
                               boldCondition: true, color: accentColor),
                         ),
                       )
