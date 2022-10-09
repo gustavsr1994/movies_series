@@ -53,6 +53,7 @@ class MovieRepositoryImpl extends MovieRepository {
           adult: element.adult,
           content: element.overview,
           popularity: element.popularity.toString(),
+          rating: element.voteAverage.toString(),
           releaseDate: element.releaseDate));
     });
     return result;
@@ -71,6 +72,7 @@ class MovieRepositoryImpl extends MovieRepository {
           adult: element.adult,
           content: element.overview,
           popularity: element.popularity.toString(),
+          rating: element.voteAverage.toString(),
           releaseDate: element.releaseDate));
     });
     return result;
@@ -89,6 +91,7 @@ class MovieRepositoryImpl extends MovieRepository {
           adult: element.adult,
           content: element.overview,
           popularity: element.popularity.toString(),
+          rating: element.voteAverage.toString(),
           releaseDate: element.releaseDate));
     });
     return result;

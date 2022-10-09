@@ -24,18 +24,15 @@ class _MainScreenState extends State<MainScreen> {
     )
   ];
 
-  List<Widget> _listWidget() => [MoviesScreen(), AboutScreen()];
-
   @override
   Widget build(BuildContext context) {
-    final List<Widget> listWidget = _listWidget();
     return Scaffold(
       appBar: AppBar(
           title: Text(widget.title,
               style: textLargerColor(boldCondition: true, color: accentColor))),
       body: IndexedStack(
         index: _bottomNavIndex,
-        children: listWidget,
+        children: [MoviesScreen(), AboutScreen()],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: _bottomNavBarItems,

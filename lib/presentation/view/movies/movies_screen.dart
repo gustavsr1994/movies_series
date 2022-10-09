@@ -83,6 +83,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                     popularity:
                                         state.listMovies[index].popularity,
                                     content: state.listMovies[index].content,
+                                    rating: state.listMovies[index].rating,
                                     onPressed: () => _navigateToDetail(
                                         state.listMovies[index].id,
                                         state.listMovies[index].imagePoster))
@@ -149,6 +150,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                     popularity:
                                         state.listMovies[index].popularity,
                                     content: state.listMovies[index].content,
+                                    rating: state.listMovies[index].rating,
                                     onPressed: () => _navigateToDetail(
                                         state.listMovies[index].id,
                                         state.listMovies[index].imagePoster))
@@ -215,6 +217,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                     popularity:
                                         state.listMovies[index].popularity,
                                     content: state.listMovies[index].content,
+                                    rating: state.listMovies[index].rating,
                                     onPressed: () => _navigateToDetail(
                                         state.listMovies[index].id,
                                         state.listMovies[index].imagePoster))

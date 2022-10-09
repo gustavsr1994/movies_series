@@ -7,6 +7,7 @@ import 'package:movies_series/presentation/bloc/detail/detail_movie_bloc.dart';
 import 'package:movies_series/presentation/shared/commons/result_state.dart';
 import 'package:movies_series/presentation/shared/style/colors_pallete.dart';
 import 'package:movies_series/presentation/shared/style/text_style_custom.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DetailMovieScreen extends StatefulWidget {
   @override
@@ -21,7 +22,6 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
   @override
   void initState() {
     super.initState();
-    print("Url ${widget.image}");
     context.read<DetailMovieBloc>().add(DetailMovies(idMovie: widget.index));
   }
 
@@ -41,15 +41,42 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
             leading: BackButton(
               color: accentColor,
             ),
-            title: Text(
-              titleMovie,
-              style: textLargerColor(boldCondition: true, color: accentColor),
+            title: BlocBuilder<DetailMovieBloc, DetailMovieState>(
+              builder: (context, state) {
+                if (state.state == ResultStateApi.HasData) {
+                  return Text(
+                    titleMovie,
+                    style: textLargerColor(
+                        boldCondition: true, color: accentColor),
+                  );
+                } else {
+                  return Shimmer.fromColors(
+                      child: Container(
+                        height: 30,
+                        width: 100,
+                      ),
+                      baseColor: accentColor.withOpacity(.3),
+                      highlightColor: accentSecondColor.withOpacity(.3));
+                }
+              },
             )),
         body: BlocBuilder<DetailMovieBloc, DetailMovieState>(
           builder: (context, state) {
             if (state.state == ResultStateApi.Loading) {
-              return Center(
-                child: CircularProgressIndicator(),
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    for (var i = 0; i < 4; i++)
+                      Shimmer.fromColors(
+                          child: Container(
+                            height: MediaQuery.of(context).size.width / 3,
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.white,
+                          ),
+                          baseColor: accentColor.withOpacity(.3),
+                          highlightColor: accentSecondColor.withOpacity(.3)),
+                  ],
+                ),
               );
             } else if (state.state == ResultStateApi.HasData) {
               return SingleChildScrollView(

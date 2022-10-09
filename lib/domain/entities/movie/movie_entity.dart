@@ -8,6 +8,7 @@ class MovieEntity extends Equatable {
   final String releaseDate;
   final String popularity;
   final String content;
+  final String rating;
 
   MovieEntity(
       {this.id,
@@ -16,11 +17,12 @@ class MovieEntity extends Equatable {
       this.title,
       this.releaseDate,
       this.popularity,
-      this.content});
+      this.content,
+      this.rating});
 
   @override
   List<Object> get props =>
-      [id, adult, imagePoster, title, releaseDate, content, popularity];
+      [id, adult, imagePoster, title, releaseDate, content, rating, popularity];
 }
 
 class MovieDetailEntity extends Equatable {

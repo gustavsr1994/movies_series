@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         getPages: listPages,
         initialRoute: '/',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
             appBarTheme: AppBarTheme(color: mainColor),
             bottomNavigationBarTheme: BottomNavigationBarThemeData(

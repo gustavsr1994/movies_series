@@ -12,6 +12,7 @@ class CardListTitle extends StatelessWidget {
   final String releaseDate;
   final String popularity;
   final String content;
+  final String rating;
   final Function onPressed;
 
   CardListTitle(
@@ -21,6 +22,7 @@ class CardListTitle extends StatelessWidget {
       @required this.releaseDate,
       @required this.popularity,
       @required this.content,
+      @required this.rating,
       @required this.onPressed});
 
   @override
@@ -47,16 +49,44 @@ class CardListTitle extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                      image: CachedNetworkImageProvider(
-                        imagePoster,
-                      ),
-                      fit: BoxFit.fill,
-                    )),
-                height: 170,
+              Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                          image: CachedNetworkImageProvider(
+                            imagePoster,
+                          ),
+                          fit: BoxFit.fill,
+                        )),
+                    height: 170,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 8,
+                    padding: EdgeInsets.all(1),
+                    margin: EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                        color: mainColor,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          rating,
+                          style:
+                              TextStyle(color: accentSecondColor, fontSize: 16),
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: accentColor,
+                          size: 15,
+                        )
+                      ],
+                    ),
+                  )
+                ],
               ),
               SizedBox(height: 18),
               Text(
