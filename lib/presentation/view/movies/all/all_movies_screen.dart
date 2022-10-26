@@ -79,11 +79,12 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                 crossAxisCount: 2,
                 children: List.generate(state.listMovies.length, (index) {
                   return CardAllItem(
-                      onPress: () => _navigateToDetail(
-                          state.listMovies[index].id,
-                          state.listMovies[index].imagePoster),
-                      title: state.listMovies[index].title,
-                      imagePoster: state.listMovies[index].imagePoster);
+                    onPress: () => _navigateToDetail(state.listMovies[index].id,
+                        state.listMovies[index].imagePoster),
+                    title: state.listMovies[index].title,
+                    imagePoster: state.listMovies[index].imagePoster,
+                    rating: state.listMovies[index].rating,
+                  );
                 }),
               );
             } else {
@@ -103,11 +104,12 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                 crossAxisCount: 2,
                 children: List.generate(state.listMovies.length, (index) {
                   return CardAllItem(
-                      onPress: () => _navigateToDetail(
-                          state.listMovies[index].id,
-                          state.listMovies[index].imagePoster),
-                      title: state.listMovies[index].title,
-                      imagePoster: state.listMovies[index].imagePoster);
+                    onPress: () => _navigateToDetail(state.listMovies[index].id,
+                        state.listMovies[index].imagePoster),
+                    title: state.listMovies[index].title,
+                    imagePoster: state.listMovies[index].imagePoster,
+                    rating: state.listMovies[index].rating,
+                  );
                 }),
               );
             } else {
@@ -127,11 +129,12 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                 crossAxisCount: 2,
                 children: List.generate(state.listMovies.length, (index) {
                   return CardAllItem(
-                      onPress: () => _navigateToDetail(
-                          state.listMovies[index].id,
-                          state.listMovies[index].imagePoster),
-                      title: state.listMovies[index].title,
-                      imagePoster: state.listMovies[index].imagePoster);
+                    onPress: () => _navigateToDetail(state.listMovies[index].id,
+                        state.listMovies[index].imagePoster),
+                    title: state.listMovies[index].title,
+                    imagePoster: state.listMovies[index].imagePoster,
+                    rating: state.listMovies[index].rating,
+                  );
                 }),
               );
             } else {

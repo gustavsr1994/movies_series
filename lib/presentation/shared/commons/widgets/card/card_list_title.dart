@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:movies_series/presentation/shared/style/colors_pallete.dart';
 import 'package:movies_series/presentation/shared/style/text_style_custom.dart';
 
@@ -10,9 +11,9 @@ class CardListTitle extends StatelessWidget {
   final bool adult;
   final String imagePoster;
   final String releaseDate;
-  final String popularity;
+  final num popularity;
   final String content;
-  final String rating;
+  final num rating;
   final Function onPressed;
 
   CardListTitle(
@@ -49,46 +50,43 @@ class CardListTitle extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Stack(
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: CachedNetworkImageProvider(
+                        imagePoster,
+                      ),
+                      fit: BoxFit.fill,
+                    )),
+                height: 170,
+              ),
+              SizedBox(height: 18),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                          image: CachedNetworkImageProvider(
-                            imagePoster,
-                          ),
-                          fit: BoxFit.fill,
-                        )),
-                    height: 170,
+                  RatingBar.builder(
+                      itemBuilder: (context, _) =>
+                          Icon(Icons.star, color: accentColor),
+                      allowHalfRating: true,
+                      maxRating: 5,
+                      itemCount: 5,
+                      itemSize: 15,
+                      ignoreGestures: true,
+                      unratedColor: Colors.blueGrey,
+                      initialRating: rating / 2,
+                      onRatingUpdate: null),
+                  SizedBox(
+                    width: 2,
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width / 8,
-                    padding: EdgeInsets.all(1),
-                    margin: EdgeInsets.all(3),
-                    decoration: BoxDecoration(
-                        color: mainColor,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          rating,
-                          style:
-                              TextStyle(color: accentSecondColor, fontSize: 16),
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: accentColor,
-                          size: 15,
-                        )
-                      ],
-                    ),
+                  Text(
+                    "${rating.ceil() / 2} (${formatterPopularity(popularity)})",
+                    style:
+                        textSmallColor(boldCondition: true, color: accentColor),
                   )
                 ],
               ),
-              SizedBox(height: 18),
               Text(
                 title,
                 style: textMediumColor(boldCondition: true, color: accentColor),
@@ -97,5 +95,9 @@ class CardListTitle extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  String formatterPopularity(num value) {
+    return (value.ceil() / 1000).ceil().toString() + "K";
   }
 }

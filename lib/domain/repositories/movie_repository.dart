@@ -52,8 +52,8 @@ class MovieRepositoryImpl extends MovieRepository {
           title: element.title,
           adult: element.adult,
           content: element.overview,
-          popularity: element.popularity.toString(),
-          rating: element.voteAverage.toString(),
+          popularity: element.popularity,
+          rating: element.voteAverage,
           releaseDate: element.releaseDate));
     });
     return result;
@@ -71,8 +71,8 @@ class MovieRepositoryImpl extends MovieRepository {
           title: element.title,
           adult: element.adult,
           content: element.overview,
-          popularity: element.popularity.toString(),
-          rating: element.voteAverage.toString(),
+          popularity: element.popularity,
+          rating: element.voteAverage,
           releaseDate: element.releaseDate));
     });
     return result;
@@ -90,8 +90,8 @@ class MovieRepositoryImpl extends MovieRepository {
               'https://www.themoviedb.org/t/p/w600_and_h900_bestv2${element.posterPath}',
           adult: element.adult,
           content: element.overview,
-          popularity: element.popularity.toString(),
-          rating: element.voteAverage.toString(),
+          popularity: element.popularity,
+          rating: element.voteAverage,
           releaseDate: element.releaseDate));
     });
     return result;

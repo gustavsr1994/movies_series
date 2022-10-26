@@ -101,26 +101,29 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
                     ),
                     Padding(
                       padding: EdgeInsets.all(3),
-                      child: RatingBar.builder(
-                          itemBuilder: (context, _) =>
-                              Icon(Icons.star, color: accentColor),
-                          allowHalfRating: true,
-                          maxRating: 5,
-                          itemCount: 5,
-                          itemSize: 35,
-                          ignoreGestures: true,
-                          unratedColor: Colors.blueGrey,
-                          itemPadding: EdgeInsets.symmetric(horizontal: 2),
-                          initialRating: state.detailMovies.rating / 2,
-                          onRatingUpdate: null),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          RatingBar.builder(
+                              itemBuilder: (context, _) =>
+                                  Icon(Icons.star, color: accentColor),
+                              allowHalfRating: true,
+                              maxRating: 5,
+                              itemCount: 5,
+                              itemSize: 20,
+                              ignoreGestures: true,
+                              unratedColor: Colors.blueGrey,
+                              itemPadding: EdgeInsets.symmetric(horizontal: 2),
+                              initialRating: state.detailMovies.rating / 2,
+                              onRatingUpdate: null),
+                          Text(
+                            (state.detailMovies.rating / 2).ceil().toString(),
+                            style: textMediumColor(
+                                boldCondition: false, color: accentColor),
+                          )
+                        ],
+                      ),
                     ),
-                    Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Text(
-                          (state.detailMovies.rating / 2).toString() + ' / 5',
-                          style: textMediumColor(
-                              boldCondition: false, color: accentColor),
-                        )),
                     Divider(
                       color: accentColor,
                     ),
@@ -276,43 +279,82 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
                                 for (var index = 0;
                                     index < state.listReview.length;
                                     index++)
-                                  GestureDetector(
-                                    onTap: () => showAlertReview(
-                                        context,
-                                        state.listReview[index].author,
-                                        state.listReview[index].content),
-                                    child: Container(
-                                      padding: EdgeInsets.all(8),
-                                      margin: EdgeInsets.all(8),
-                                      width:
-                                          (MediaQuery.of(context).size.width /
-                                                  2) +
-                                              100,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(color: Colors.amber),
-                                        color: Colors.black,
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            state.listReview[index].author,
-                                            style: textLargerColor(
-                                                boldCondition: true,
-                                                color: accentColor),
-                                          ),
-                                          SizedBox(height: 8),
-                                          Text(
-                                            state.listReview[index].content,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: textMediumColor(
-                                                boldCondition: false,
-                                                color: accentColor),
-                                          ),
-                                        ],
-                                      ),
+                                  Container(
+                                    padding: EdgeInsets.all(8),
+                                    margin: EdgeInsets.all(8),
+                                    width: (MediaQuery.of(context).size.width /
+                                            2) +
+                                        100,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(color: Colors.amber),
+                                      color: Colors.black,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          state.listReview[index].content,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 3,
+                                          style: textLargerColor(
+                                              boldCondition: false,
+                                              color: accentColor),
+                                        ),
+                                        SizedBox(
+                                          height: 7,
+                                        ),
+                                        Text(
+                                          "By " +
+                                              state.listReview[index].author,
+                                          style: textMediumColor(
+                                              boldCondition: true,
+                                              color: accentColor),
+                                        ),
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: accentColor,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                7))),
+                                                fixedSize: Size(
+                                                    MediaQuery.of(context)
+                                                        .size
+                                                        .width,
+                                                    0)),
+                                            onPressed: () {
+                                              showAlertReview(
+                                                  context,
+                                                  state
+                                                      .listReview[index].author,
+                                                  state.listReview[index]
+                                                      .content);
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "View Detail",
+                                                  style: textMediumColor(
+                                                      boldCondition: true,
+                                                      color: mainColor),
+                                                ),
+                                                Icon(
+                                                  Icons
+                                                      .arrow_forward_ios_rounded,
+                                                  color: mainColor,
+                                                )
+                                              ],
+                                            ))
+                                      ],
                                     ),
                                   )
                               ],
@@ -342,11 +384,12 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
             scrollable: true,
             backgroundColor: mainColor,
             title: Text(
-              'From : $title',
+              'By : $title',
               style: textLargerColor(
                   boldCondition: true, color: accentSecondColor),
             ),
             content: Text(message,
+                textAlign: TextAlign.justify,
                 style: textMediumColor(
                     boldCondition: false, color: accentSecondColor)),
             actions: [

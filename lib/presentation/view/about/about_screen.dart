@@ -33,7 +33,7 @@ class _AboutScreenState extends State<AboutScreen> {
               ),
               child: Card(
                 color: mainColor,
-                margin: EdgeInsets.all(16),
+                margin: EdgeInsets.all(12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -117,7 +117,7 @@ Widget bodyMyProfile(BuildContext context) {
           width: MediaQuery.of(context).size.width,
           height: 50,
           margin: EdgeInsets.all(8),
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
           decoration: BoxDecoration(
             color: Colors.black,
             border: Border.all(color: accentColor),
@@ -145,7 +145,7 @@ Widget bodyMyProfile(BuildContext context) {
           width: MediaQuery.of(context).size.width,
           height: 50,
           margin: EdgeInsets.all(8),
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
           decoration: BoxDecoration(
             color: Colors.black,
             border: Border.all(color: accentColor),
@@ -174,7 +174,7 @@ Widget bodyMyProfile(BuildContext context) {
           width: MediaQuery.of(context).size.width,
           height: 50,
           margin: EdgeInsets.all(8),
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
           decoration: BoxDecoration(
             color: Colors.black,
             border: Border.all(color: accentColor),

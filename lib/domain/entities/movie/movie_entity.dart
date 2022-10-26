@@ -6,9 +6,9 @@ class MovieEntity extends Equatable {
   final String imagePoster;
   final String title;
   final String releaseDate;
-  final String popularity;
+  final num popularity;
   final String content;
-  final String rating;
+  final num rating;
 
   MovieEntity(
       {this.id,
