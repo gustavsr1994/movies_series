@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:movies_series/presentation/shared/style/colors_pallete.dart';
 import 'package:movies_series/presentation/shared/style/text_style_custom.dart';
+import 'package:movies_series/presentation/shared/utils/date_formatter.dart';
 
 class CardListTitle extends StatelessWidget {
   final String title;
@@ -63,25 +64,29 @@ class CardListTitle extends StatelessWidget {
               ),
               SizedBox(height: 18),
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  RatingBar.builder(
-                      itemBuilder: (context, _) =>
-                          Icon(Icons.star, color: accentColor),
-                      allowHalfRating: true,
-                      maxRating: 5,
-                      itemCount: 5,
-                      itemSize: 15,
-                      ignoreGestures: true,
-                      unratedColor: Colors.blueGrey,
-                      initialRating: rating / 2,
-                      onRatingUpdate: null),
-                  SizedBox(
-                    width: 2,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.star,
+                        color: accentColor,
+                        size: 17,
+                      ),
+                      SizedBox(
+                        width: 2,
+                      ),
+                      Text(
+                        "${(rating / 2).round()}",
+                        style: textSmallColor(
+                            boldCondition: true, color: accentColor),
+                      )
+                    ],
                   ),
                   Text(
-                    "${rating.ceil() / 2} (${formatterPopularity(popularity)})",
+                    DateFormatter.toDDMMMYYYY(releaseDate),
                     style:
                         textSmallColor(boldCondition: true, color: accentColor),
                   )
